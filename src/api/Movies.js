@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const fetchMovies = (url) => {
+const Movies = (url) => {
     const [movies, setMovies] = useState(null);
 
     const [name, setName] = useState('Tea');
@@ -47,4 +47,4 @@ const fetchMovies = (url) => {
     return { movies, isLoading, netErr}
 }
  
-export default fetchMovies;
+export default Movies;

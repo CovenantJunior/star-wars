@@ -6,7 +6,7 @@ import './static/css/datatables.min.css';
 //import './static/js/datatables.min.js';
 import star_wars from './star-wars.gif';
 import loader from './static/images/loader.gif';
-import fetchMovies from './api/Movies';
+import Movies from './api/Movies';
 import MovieList from './components/MovieList';
 import MovieDetails from './components/MovieDetails';
 
@@ -27,7 +27,7 @@ function App() {
     setLoadDetail(true);
     setDetail(film);
   }
-  const {movies, isLoading, netErr} = fetchMovies('https://swapi.dev/api/films/');
+  const {movies, isLoading, netErr} = Movies('https://swapi.dev/api/films/');
   return (
     <div className="App">
       <header className={`App-header animate_box animated-fast ${start}`}>
