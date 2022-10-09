@@ -7,9 +7,11 @@ const MovieDetails = ({movie, detail}) => {
             <marquee behavior="scroll" direction="left">{movie.opening_crawl}</marquee>
             <br />
             <br />
-            <button>All</button>
-            <button>Male</button>
-            <button>Female</button>
+            <button className='select'>All</button>
+            <button className='select'>Male</button>
+            <button className='select'>Female</button>
+            <br />
+            <br />
             <table className="table dataTable table-responsive table-bordered" id="myTable">
               <thead className="thead-dark">
                 <tr>

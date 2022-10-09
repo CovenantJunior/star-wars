@@ -59,3 +59,8 @@ button, select, option {
   font-weight: 600;
   padding: 10px;
 }
+
+button.select {
+  margin: 5px;
+  padding: 3px 10px;
+}
