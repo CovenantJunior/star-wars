@@ -1,20 +1,24 @@
 .App {
   text-align: center;
+  background-color: #000;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  background-image: url('./star-wars.gif');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    /*animation: App-logo-spin infinite 20s linear;*/
   }
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +29,8 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #FFD700;
+  cursor: pointer;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +40,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.show {
+  display: block!important;
+}
+
+.hide {
+  display: none!important;
+}
+
+button, select, option {
+  background-color: #FFD700!important;
+  border-color: #FFD700!important;
+  color: #000;
+  border-radius: 5px;
+  font-size: 20px!important;
+  font-weight: 600;
+  padding: 10px;
 }
