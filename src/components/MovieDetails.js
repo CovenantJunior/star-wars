@@ -1,5 +1,4 @@
 import '../static/css/datatables.min.css';
-import '../static/js/jquery.min.js'
 import Row from './Row';
 
 const MovieDetails = ({movie, detail}) => {
