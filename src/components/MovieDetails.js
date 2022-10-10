@@ -1,9 +1,18 @@
 import '../static/css/datatables.min.css';
 import Row from './Row';
+import Details from '../api/Details';
 
 const MovieDetails = ({movie, detail}) => {
     movie = movie[0];
-    console.log(movie);
+    //console.log(movie);
+    var data;
+    async function row(character){
+      var row;
+      const res = await fetch(character)
+                  .then(res => res.json())
+                  .then(data => row = data)
+                  .then(() => console.log(row))
+    }
     return (
         <div>
             <marquee behavior="scroll" direction="left">{movie.opening_crawl}</marquee>
@@ -24,17 +33,8 @@ const MovieDetails = ({movie, detail}) => {
               </thead>
               <tbody>
                 {movie.characters.map((character) => (
-                  fetch(character)
-                  .then(res => {
-                      if (!res.ok) {
-                          throw Error('Failed to fetch data...')
-                      }
-                      return res.json();
-                  })
-                  .then(data => {
-                      character = data;
-                  }),
-                  <Row data={character} />
+                  data = row(character),console.log(data),
+                  <Row key={data.episode_id} row={data} />
                 ))}
               </tbody>
             </table>

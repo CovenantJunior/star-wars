@@ -1,9 +1,11 @@
-const Row = ({data}) => {
+import { useState } from 'react';
+
+const Row = ({key, row}) => {
     return (
-        <tr>
-            <td>{data.name}</td>
-            <td>{data.gender}</td>
-            <td>{data.height}</td>
+        <tr key={key}>
+            <td>{row.name}</td>
+            <td>{row.gender}</td>
+            <td>{row.height}</td>
         </tr>
     );
 }
