@@ -1,7 +1,10 @@
 import '../static/css/datatables.min.css';
+import '../static/js/jquery.min.js'
+import Row from './Row';
 
 const MovieDetails = ({movie, detail}) => {
     movie = movie[0];
+    console.log(movie);
     return (
         <div>
             <marquee behavior="scroll" direction="left">{movie.opening_crawl}</marquee>
@@ -21,7 +24,19 @@ const MovieDetails = ({movie, detail}) => {
                 </tr>
               </thead>
               <tbody>
-                
+                {movie.characters.map((character) => (
+                  fetch(character)
+                  .then(res => {
+                      if (!res.ok) {
+                          throw Error('Failed to fetch data...')
+                      }
+                      return res.json();
+                  })
+                  .then(data => {
+                      character = data;
+                  }),
+                  <Row data={character} />
+                ))}
               </tbody>
             </table>
         </div>
