@@ -1,18 +1,31 @@
 import '../static/css/datatables.min.css';
-import Row from './Row';
 import Details from '../api/Details';
+import { useState } from "react";
+import loader from '../static/images/loader.gif';
 
 const MovieDetails = ({movie, detail}) => {
     movie = movie[0];
-    //console.log(movie);
-    var data;
-    async function row(character){
-      var row;
-      const res = await fetch(character)
-                  .then(res => res.json())
-                  .then(data => row = data)
-                  .then(() => console.log(row))
-    }
+    var array = [];
+    const [isLoading, setisLoading] = useState(true);
+    const [characterSet, setCharacterSet] = useState([]);
+
+    
+    movie.characters.map((character) => {
+      async function row(character){
+        var row;
+        await fetch(character)
+        .then(res => res.json())
+        .then(data => row = data)
+        .then(() => {array.push(row)})
+        .then(() => {console.log(row)})
+      }
+      row(character).then(row => {
+        setCharacterSet([...array]);
+      }).then(row => {
+        setisLoading(false);
+      })
+    })
+    
     return (
         <div>
             <marquee behavior="scroll" direction="left">{movie.opening_crawl}</marquee>
@@ -32,10 +45,14 @@ const MovieDetails = ({movie, detail}) => {
                 </tr>
               </thead>
               <tbody>
-                {movie.characters.map((character) => (
-                  data = row(character),console.log(data),
-                  <Row key={data.episode_id} row={data} />
-                ))}
+                {isLoading && <img src={loader} alt='' />}
+                {characterSet && characterSet.map((char, i) =>
+                    <tr key={i}>
+                        <td>{char.name}</td>
+                        <td>{char.gender}</td>
+                        <td>{char.height}cm</td>
+                    </tr>
+                )}
               </tbody>
             </table>
         </div>
