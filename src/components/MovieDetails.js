@@ -17,7 +17,7 @@ const MovieDetails = ({movie, detail}) => {
         .then(res => res.json())
         .then(data => row = data)
         .then(() => {array.push(row)})
-        .then(() => {console.log(array)})
+        .then(() => {console.log(row)})
       }
       row(character).then(row => {
         setCharacterSet([...array]);
@@ -36,6 +36,7 @@ const MovieDetails = ({movie, detail}) => {
             <button className='select'>Female</button>
             <br />
             <br />
+            {isLoading && <img src={loader} alt='' />}
             <table className="table dataTable table-responsive table-bordered" id="myTable">
               <thead className="thead-dark">
                 <tr>
@@ -45,7 +46,6 @@ const MovieDetails = ({movie, detail}) => {
                 </tr>
               </thead>
               <tbody>
-                {isLoading && <img src={loader} alt='' />}
                 {characterSet && characterSet.map((char, i) =>
                     <tr key={i}>
                         <td>{char.name}</td>
