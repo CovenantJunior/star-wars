@@ -7,7 +7,7 @@ const MovieDetails = ({movie, detail}) => {
     movie = movie[0];
     var array = [];
     const [isLoading, setisLoading] = useState(true);
-    const [characterSet, setCharacterSet] = useState([]);
+    const [characterSet, setCharacterSet] = useState(null);
 
     
     movie.characters.map((character) => {
@@ -20,9 +20,8 @@ const MovieDetails = ({movie, detail}) => {
         .then(() => {console.log(row)})
       }
       row(character).then(row => {
-        setCharacterSet([...array]);
-      }).then(row => {
         setisLoading(false);
+        setCharacterSet(array);
       })
     })
     
